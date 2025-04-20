@@ -5,7 +5,7 @@ import 'package:flutter_client/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 //BaseUrl
-const String baseApiUrl = "http://127.0.0.1:5000/api/users";
+const String baseApiUrl = "http://192.168.8.150:5000/api/users";
 
 class UserServices {
   //Create a User

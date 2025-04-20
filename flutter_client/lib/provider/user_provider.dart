@@ -35,6 +35,21 @@ class UserProvider with ChangeNotifier {
     }
   }
 
+  //Update a User
+  Future<void>updateUser(UserModel user)async{
+    try{
+      await _userServices.updateUser(user);
+      //Get the Index
+      int index = _users.indexWhere((userInList)=> userInList.id == user.id);
+      if(index != -1){
+        _users[index] = user;
+        notifyListeners();
+      }
+    }catch(error){
+      debugPrint("Failed to Update User: $error");
+    }
+  }
+
   //Delete a User
   Future<void> deleteUser(String userId) async {
     try {

@@ -47,6 +47,26 @@ class UserServices {
     }
   }
 
+  //Update a User
+  Future<void> updateUser(UserModel user) async {
+    try {
+      final respose = await http.put(
+        Uri.parse("$baseApiUrl/update/${user.id}"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: json.encode(user.toJson()),
+      );
+      if(respose.statusCode != 200){
+        debugPrint("Failed to Update User: ${respose.statusCode}");
+        throw Exception("Failed to Update User");
+      }
+    } catch (error) {
+      debugPrint("Error With Updating User: $error");
+      rethrow;
+    }
+  }
+
   //Delete a User
   Future<void> deleteUser(String userId) async {
     try {

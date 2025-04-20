@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_client/pages/add_user_page.dart';
+import 'package:flutter_client/pages/update_user_page.dart';
 import 'package:flutter_client/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -32,6 +33,13 @@ class UserListPage extends StatelessWidget {
             itemBuilder: (context, index) {
               final user = userProvider.users[index];
               return ListTile(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => UpdateUserPage(user: user),
+                    ),
+                  );
+                },
                 title: Text(user.name),
                 subtitle: Text(user.email),
                 trailing: IconButton(

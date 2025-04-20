@@ -35,7 +35,12 @@ class UserListPage extends StatelessWidget {
                 title: Text(user.name),
                 subtitle: Text(user.email),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    userProvider.deleteUser(user.id);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("User Deleted Successfully!")),
+                    );
+                  },
                   icon: Icon(Icons.delete),
                 ),
               );

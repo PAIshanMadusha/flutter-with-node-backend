@@ -34,4 +34,15 @@ class UserProvider with ChangeNotifier {
       debugPrint("Failed to Create User: $error");
     }
   }
+
+  //Delete a User
+  Future<void> deleteUser(String userId) async {
+    try {
+      await _userServices.deleteUser(userId);
+      _users.removeWhere((user) => user.id == userId);
+      notifyListeners();
+    } catch (error) {
+      debugPrint("Failed to Delete User: $error");
+    }
+  }
 }

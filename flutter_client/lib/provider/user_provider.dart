@@ -2,22 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_client/models/user_model.dart';
 import 'package:flutter_client/services/user_services.dart';
 
-class UserProvider with ChangeNotifier{
+class UserProvider with ChangeNotifier {
   final UserServices _userServices = UserServices();
-  final List<UserModel> _users = [];
+  List<UserModel> _users = [];
 
   //Getter
   List<UserModel> get users => _users;
 
-  //Fetch Users
+  //Fetch Users When the Provider is Initialized
+  UserProvider() {
+    fetchAllUsers();
+  }
+
+  //Fetch All Users
+  Future<void> fetchAllUsers() async {
+    try {
+      _users = await _userServices.getAllUsers();
+      notifyListeners();
+    } catch (error) {
+      debugPrint("Failed to Fetch Users: $error");
+    }
+  }
 
   //Create User
-  Future<void>addUser(UserModel user)async{
-    try{
+  Future<void> addUser(UserModel user) async {
+    try {
       await _userServices.createUser(user);
       _users.add(user);
       notifyListeners();
-    }catch(error){
+    } catch (error) {
       debugPrint("Failed to Create User: $error");
     }
   }

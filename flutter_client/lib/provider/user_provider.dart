@@ -27,8 +27,8 @@ class UserProvider with ChangeNotifier {
   //Create User
   Future<void> addUser(UserModel user) async {
     try {
-      await _userServices.createUser(user);
-      _users.add(user);
+      final createdUser = await _userServices.createUser(user);
+      _users.add(createdUser);
       notifyListeners();
     } catch (error) {
       debugPrint("Failed to Create User: $error");
@@ -36,16 +36,16 @@ class UserProvider with ChangeNotifier {
   }
 
   //Update a User
-  Future<void>updateUser(UserModel user)async{
-    try{
+  Future<void> updateUser(UserModel user) async {
+    try {
       await _userServices.updateUser(user);
       //Get the Index
-      int index = _users.indexWhere((userInList)=> userInList.id == user.id);
-      if(index != -1){
+      int index = _users.indexWhere((userInList) => userInList.id == user.id);
+      if (index != -1) {
         _users[index] = user;
         notifyListeners();
       }
-    }catch(error){
+    } catch (error) {
       debugPrint("Failed to Update User: $error");
     }
   }

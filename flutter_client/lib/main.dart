@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_client/pages/user_list_page.dart';
+import 'package:flutter_client/pages/splash_page.dart';
 import 'package:flutter_client/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Flutter With Node Backend",
-      home: UserListPage(),
+      home: SplashPage(),
     );
   }
 }

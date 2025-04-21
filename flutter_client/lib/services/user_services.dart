@@ -9,7 +9,7 @@ const String baseApiUrl = "http://192.168.8.150:5000/api/users";
 
 class UserServices {
   //Create a User
-  Future<void> createUser(UserModel user) async {
+  Future<UserModel> createUser(UserModel user) async {
     try {
       final response = await http.post(
         Uri.parse(baseApiUrl),
@@ -18,11 +18,12 @@ class UserServices {
         },
         body: json.encode(user.toJson()),
       );
-      if (response.statusCode != 201) {
+      if (response.statusCode == 201 || response.statusCode == 200) {
+        debugPrint("User Created!");
+        return UserModel.fromJson(jsonDecode(response.body));
+      } else {
         debugPrint("Failed to Create User: ${response.statusCode}");
         throw Exception("Failed to Create User");
-      } else {
-        debugPrint("User Created!");
       }
     } catch (error) {
       debugPrint("Error When Creating User: $error");
@@ -57,7 +58,7 @@ class UserServices {
         },
         body: json.encode(user.toJson()),
       );
-      if(respose.statusCode != 200){
+      if (respose.statusCode != 200) {
         debugPrint("Failed to Update User: ${respose.statusCode}");
         throw Exception("Failed to Update User");
       }

@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    title: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     email: {
         type: String,
         required: true,
@@ -16,6 +21,11 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    mobileNo: {
+        type: String,
+        required: true,
+        trim: true,
+    }
 },
     { timestamps: true }
 

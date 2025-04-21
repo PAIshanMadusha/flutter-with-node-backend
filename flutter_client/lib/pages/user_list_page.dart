@@ -11,15 +11,22 @@ class UserListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Users List"),
+        title: Text(
+          "Users List",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
+        ),
+        centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => AddUserPage()));
-            },
-            icon: Icon(Icons.add),
+          Padding(
+            padding: const EdgeInsets.only(right: 5),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (context) => AddUserPage()));
+              },
+              icon: Icon(Icons.add, size: 40),
+            ),
           ),
         ],
       ),
@@ -40,8 +47,28 @@ class UserListPage extends StatelessWidget {
                     ),
                   );
                 },
-                title: Text(user.name),
-                subtitle: Text(user.email),
+                leading: Icon(Icons.person, size: 30),
+                title: Text(
+                  user.name,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 5),
+                    Text(
+                      "Title: ${user.title}",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    SizedBox(height: 5),
+                    Text("Email: ${user.email}", style: TextStyle(color: Colors.black, fontSize: 18),),
+                    SizedBox(height: 5),
+                    Text(
+                      "Mobile No: ${user.mobileNo}",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
                 trailing: IconButton(
                   onPressed: () {
                     userProvider.deleteUser(user.id);
@@ -49,7 +76,7 @@ class UserListPage extends StatelessWidget {
                       SnackBar(content: Text("User Deleted Successfully!")),
                     );
                   },
-                  icon: Icon(Icons.delete),
+                  icon: Icon(Icons.delete, size: 30, color: Colors.redAccent),
                 ),
               );
             },

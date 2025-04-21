@@ -107,6 +107,8 @@ cd node_node_backend
 npm install
 ```
 
+---
+
 ### 3. **✅ Database Setup (MongoDb):**
 
 Install **MongoDB** if you haven’t already, or start it if it’s already installed. Then, create a `.env` file in the root of the `node_backend` directory and add the following content:

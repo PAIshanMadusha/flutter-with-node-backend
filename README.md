@@ -99,7 +99,7 @@ flutter pub get
 
 #### Navigate to the **Backend** directory:
 ```bash
-cd node_node_backend
+cd node_backend
 ```
 
 #### Install dependencies:
